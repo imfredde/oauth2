@@ -83,13 +83,15 @@ func (e *expirationTime) UnmarshalJSON(b []byte) error {
 	if err != nil {
 		return err
 	}
-	i, err := n.Int64()
+	f, err := n.Float64()
 	if err != nil {
 		return err
 	}
+	i := int(f)
 	if i > math.MaxInt32 {
 		i = math.MaxInt32
 	}
+
 	*e = expirationTime(i)
 	return nil
 }
