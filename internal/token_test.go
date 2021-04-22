@@ -75,3 +75,14 @@ func TestExpiresInUpperBound(t *testing.T) {
 		t.Errorf("expiration time = %v; want %v", e, want)
 	}
 }
+
+func TestExpiresInAsFloat(t *testing.T) {
+	var e expirationTime
+	if err := e.UnmarshalJSON([]byte("28800.000000")); err != nil {
+		t.Fatal(err)
+	}
+	const want = 28800
+	if e != want {
+		t.Errorf("expiration time = %v; want %v", e, want)
+	}
+}
